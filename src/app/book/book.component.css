@@ -1,0 +1,74 @@
+/* mat-card {
+    width: 500px;
+    height: 600px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+mat-card-header,
+mat-card-content {
+    width: 100%;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+img {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+ */
+
+.card-container {
+    width: 300px;
+    /* Fixed width for all cards */
+    height: 450px;
+    /* Fixed height for all cards */
+    padding: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    /* Ensures padding is included in the size */
+}
+
+mat-card {
+    width: 100%;
+    /* Match the container width */
+    height: 100%;
+    /* Match the container height */
+    display: flex;
+    flex-direction: column;
+    /* Stack content vertically */
+    justify-content: space-between;
+    /* Space out content */
+    margin: 0;
+    /* Remove extra margin */
+}
+
+img {
+    width: 100%;
+    height: 60%;
+    /* Take up 60% of the card height */
+    object-fit: cover;
+    border-radius: 4px 4px 0 0;
+    /* Optional rounded corners */
+}
+
+.unavailable-text {
+    color: #f44336;
+    font-weight: 500;
+    margin: 16px 0 0;
+    /* Adjust spacing to fit card layout */
+}
+
+/* library.component.css */
+.library-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+}
