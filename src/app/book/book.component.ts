@@ -1,5 +1,5 @@
 // src/app/book/book.component.ts
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Book } from '../models/book';  // Make sure this path is correct
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
@@ -23,10 +23,13 @@ export class BookComponent {
     pages: '',
   };
 
+  @Output() bookReserved = new EventEmitter<Book>();
+
   onOrder(): void {
     this.book.amount--;
     if (this.book.amount === 0) {
       this.book.available = false;
     }
+    this.bookReserved.emit(this.book);
   }
 }

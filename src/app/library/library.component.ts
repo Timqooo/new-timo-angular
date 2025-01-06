@@ -1,7 +1,7 @@
 // src/app/library/library.component.ts
 import { Component, inject } from '@angular/core';
 import { BookComponent } from '../book/book.component';
-import { Book } from '../models/book';  // Make sure this path is correct
+import { Book } from '../models/book';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -18,6 +18,7 @@ export class LibraryComponent {
 
   LibService: LibService = inject(LibService)
   books: Book[] = [];
+  lastReservedBook: Book | null = null;
 
   filteredBookList: Book[] = [];
 
@@ -29,4 +30,7 @@ export class LibraryComponent {
     );
   }
 
+  onBookReserved(book: Book): void {
+    this.lastReservedBook = book;
+  }
 }
