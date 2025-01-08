@@ -1,0 +1,19 @@
+<div class="card-container">
+    <mat-card id="card">
+        <mat-icon id="book-icon">book</mat-icon>
+        <mat-card-header>
+            <mat-card-title>{{ book.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Genre:</strong> {{book.genre}}</p>
+            <p><strong>Pages:</strong> {{book.pages}}</p>
+            <p><strong>Available copies:</strong> {{book.amount}}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" *ngIf="book.available" (click)="onOrder()">Reserve</button>
+            <p *ngIf="!book.available" class="unavailable-text">This book is unavailable</p>
+        </mat-card-actions>
+    </mat-card>
+</div>
