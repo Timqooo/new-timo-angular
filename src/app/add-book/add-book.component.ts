@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LibService } from '../lib.service';
+import { Book } from '../models/book';
 
 
 
@@ -24,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AddBookComponent {
   bookForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private libraryService: LibService) {
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
@@ -35,9 +37,19 @@ export class AddBookComponent {
   }
 
   onSubmit() {
+    const newBook = this.bookForm.value as Book;
+
     if (this.bookForm.valid) {
       console.log(this.bookForm.value);
-      // Handle form submission here
+      this.libraryService.addSingleBook(newBook).subscribe({
+        next: (response: Book) => {
+          console.log('Book added successfully:', response);
+          this.clearForm();
+        },
+        error: (err) => {
+          console.error('Error adding book:', err);
+        }
+      });
     }
   }
 
