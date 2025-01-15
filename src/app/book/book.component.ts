@@ -15,13 +15,13 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class BookComponent {
   @Input() book: Book = {
-    id: 0,
+    id: '',
     title: '',
     author: '',
     genre: '',
     amount: 0,
     available: false,
-    pages: '',
+    pages: 0,
   };
 
   @Output() bookReserved = new EventEmitter<Book>();
