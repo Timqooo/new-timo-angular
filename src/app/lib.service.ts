@@ -34,7 +34,10 @@ addSingleBook(book: Book): Observable<Book> {
   return from(this.store.collection('books').add(book)).pipe(
     map((docRef) => {
       return { id: docRef.id, ...book } as Book;
-    })
+    }),
+        tap((addedBook) => {
+          alert(`Book "${addedBook.title}" added successfully!`); // Show an alert
+        })
   );
 }
 
