@@ -21,10 +21,10 @@ export class LibService {
   searchResults$ = this.searchResultsSubject.asObservable();
 
   constructor(private store: AngularFirestore, private restservice: LibRestService) {
-    // this.bookList.forEach(entry => {
-    //   this.addData(entry);
-    //   }
-    // );
+    this.bookList.forEach(entry => {
+      this.addData(entry);
+      }
+    );
   }
   addData(data: Book) {
     this.store.collection('books').add(data);
@@ -33,7 +33,6 @@ export class LibService {
 addSingleBook(book: Book): Observable<Book> {
   return from(this.store.collection('books').add(book)).pipe(
     map((docRef) => {
-      // Explicitly assign the ID and spread the rest of the book object
       return { id: docRef.id, ...book } as Book;
     })
   );
@@ -46,6 +45,15 @@ addSingleBook(book: Book): Observable<Book> {
         title: book.title.toUpperCase()
       })))
     );
+  }
+
+  searchBooks(searchTerm: string) {
+    this.getListOfBooks().subscribe(books => {
+      const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      this.searchResultsSubject.next(filteredBooks);
+    });
   }
 
 }

@@ -31,7 +31,7 @@ export class AppComponent {
   title = 'timo-angular';
   private libService = inject(LibService);
 
-  // filteredBookList(searchTerm: string) {
-  //   this.libService.searchBooks(searchTerm);
-  // }
+  filteredBookList(searchTerm: string) {
+    this.libService.searchBooks(searchTerm);
+  }
 }
